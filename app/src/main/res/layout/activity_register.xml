@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:background="@color/bg_dark">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="24dp">
+
+        <ImageButton
+            android:id="@+id/btnSmtpSettingsReg"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:src="@android:drawable/ic_menu_manage"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="SMTP Settings"
+            app:tint="@color/text_secondary"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <TextView
+            android:id="@+id/tvRegisterTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Welcome to Successtudy"
+            android:textColor="@color/text_primary"
+            android:textSize="26sp"
+            android:textStyle="bold"
+            android:layout_marginTop="28dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/tvRegisterSubtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="The academic peer learning network"
+            android:textColor="@color/text_secondary"
+            android:textSize="14sp"
+            android:layout_marginTop="4dp"
+            app:layout_constraintTop_toBottomOf="@id/tvRegisterTitle"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <EditText
+            android:id="@+id/etRegName"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:hint="Full Name"
+            android:textColorHint="@color/text_muted"
+            android:textColor="@color/text_primary"
+            android:inputType="textPersonName"
+            android:background="@drawable/bg_rounded_card"
+            android:paddingHorizontal="16dp"
+            android:layout_marginTop="20dp"
+            app:layout_constraintTop_toBottomOf="@id/tvRegisterSubtitle"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <EditText
+            android:id="@+id/etRegEmail"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:hint="Email Address"
+            android:textColorHint="@color/text_muted"
+            android:textColor="@color/text_primary"
+            android:inputType="textEmailAddress"
+            android:background="@drawable/bg_rounded_card"
+            android:paddingHorizontal="16dp"
+            android:layout_marginTop="12dp"
+            app:layout_constraintTop_toBottomOf="@id/etRegName"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <EditText
+            android:id="@+id/etRegPassword"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:hint="Password (min 6 characters)"
+            android:textColorHint="@color/text_muted"
+            android:textColor="@color/text_primary"
+            android:inputType="textPassword"
+            android:background="@drawable/bg_rounded_card"
+            android:paddingHorizontal="16dp"
+            android:layout_marginTop="12dp"
+            app:layout_constraintTop_toBottomOf="@id/etRegEmail"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <EditText
+            android:id="@+id/etRegUniversity"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:hint="University / Institution"
+            android:textColorHint="@color/text_muted"
+            android:textColor="@color/text_primary"
+            android:inputType="text"
+            android:background="@drawable/bg_rounded_card"
+            android:paddingHorizontal="16dp"
+            android:layout_marginTop="12dp"
+            app:layout_constraintTop_toBottomOf="@id/etRegPassword"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <TextView
+            android:id="@+id/tvRoleLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Select Your Role:"
+            android:textColor="@color/text_secondary"
+            android:textSize="14sp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@id/etRegUniversity"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <RadioGroup
+            android:id="@+id/rgRole"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@id/tvRoleLabel"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <RadioButton
+                android:id="@+id/rbStudent"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Student"
+                android:textColor="@color/text_primary"
+                android:buttonTint="@color/teal_primary"
+                android:checked="true" />
+
+            <RadioButton
+                android:id="@+id/rbTeacher"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Teacher"
+                android:textColor="@color/text_primary"
+                android:buttonTint="@color/teal_primary" />
+
+            <RadioButton
+                android:id="@+id/rbAdmin"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Admin"
+                android:textColor="@color/text_primary"
+                android:buttonTint="@color/teal_primary" />
+        </RadioGroup>
+
+        <Button
+            android:id="@+id/btnRegister"
+            android:layout_width="0dp"
+            android:layout_height="56dp"
+            android:text="Register and Send Code"
+            android:textColor="@color/bg_darker"
+            android:textStyle="bold"
+            android:backgroundTint="@color/teal_primary"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:layout_marginTop="24dp"
+            app:layout_constraintTop_toBottomOf="@id/rgRole"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <LinearLayout
+            android:id="@+id/llOrDivider"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginTop="20dp"
+            app:layout_constraintTop_toBottomOf="@id/btnRegister"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1"
+                android:background="@color/text_muted" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="OR"
+                android:textColor="@color/text_secondary"
+                android:textSize="12sp"
+                android:layout_marginHorizontal="16dp" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1"
+                android:background="@color/text_muted" />
+        </LinearLayout>
+
+        <com.google.android.gms.common.SignInButton
+            android:id="@+id/btnGoogleSignIn"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@id/llOrDivider"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <LinearLayout
+            android:id="@+id/llLoginPrompt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="24dp"
+            app:layout_constraintTop_toBottomOf="@id/btnGoogleSignIn"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <TextView
+                android:id="@+id/tvHasAccount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Already have an account? "
+                android:textColor="@color/text_secondary"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tvLoginLink"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Login here"
+                android:textColor="@color/teal_primary"
+                android:textStyle="bold"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

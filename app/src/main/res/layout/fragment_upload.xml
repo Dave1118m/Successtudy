@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_dark">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Upload Study Material"
+            android:textColor="@color/text_primary"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:layout_marginTop="12dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="AI will read your material, extract key concepts, and generate a customized practice quiz."
+            android:textColor="@color/text_secondary"
+            android:textSize="13sp"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="20dp" />
+
+        <!-- File Upload Card -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardFileDropZone"
+            android:layout_width="match_parent"
+            android:layout_height="140dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="0dp"
+            app:cardBackgroundColor="@color/bg_card">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:padding="16dp">
+
+                <ImageView
+                    android:id="@+id/ivUploadIcon"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:src="@android:drawable/stat_sys_upload"
+                    app:tint="@color/teal_primary" />
+
+                <TextView
+                    android:id="@+id/tvUploadStatus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tap to choose PDF, DOCX, TXT, or PPTX file"
+                    android:textColor="@color/text_primary"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:layout_marginTop="10dp" />
+
+                <TextView
+                    android:id="@+id/tvUploadSubtitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Supports full textbook chapters, lecture slides &amp; notes"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="11sp"
+                    android:layout_marginTop="4dp" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- Material Name -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Material Title / Subject (Optional)"
+            android:textColor="@color/text_primary"
+            android:textStyle="bold"
+            android:textSize="13sp"
+            android:layout_marginTop="20dp" />
+
+        <EditText
+            android:id="@+id/etNoteTitle"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:hint="e.g. Molecular Biology Chapter 3 (Auto-named if blank)"
+            android:textColorHint="@color/text_muted"
+            android:textColor="@color/text_primary"
+            android:inputType="text"
+            android:background="@drawable/bg_rounded_card"
+            android:paddingHorizontal="16dp"
+            android:layout_marginTop="8dp" />
+
+        <!-- Optional Text Notes -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Or Paste Study Text Directly (Optional)"
+            android:textColor="@color/text_primary"
+            android:textStyle="bold"
+            android:textSize="13sp"
+            android:layout_marginTop="16dp" />
+
+        <EditText
+            android:id="@+id/etNoteDesc"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:hint="Paste your study notes, definitions, or lecture content here..."
+            android:textColorHint="@color/text_muted"
+            android:textColor="@color/text_primary"
+            android:inputType="textMultiLine"
+            android:gravity="top|start"
+            android:background="@drawable/bg_rounded_card"
+            android:padding="14dp"
+            android:layout_marginTop="8dp" />
+
+        <!-- AI Quiz Configuration Card -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="0dp"
+            app:cardBackgroundColor="@color/bg_card">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="🎯 AI Quiz Customization"
+                    android:textColor="@color/teal_primary"
+                    android:textStyle="bold"
+                    android:textSize="14sp"
+                    android:layout_marginBottom="12dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Select Difficulty Level:"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+
+                <RadioGroup
+                    android:id="@+id/rgQuizDifficultyUpload"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="16dp">
+
+                    <RadioButton
+                        android:id="@+id/rbDiffSimple"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Simple"
+                        android:textColor="@color/text_primary"
+                        android:buttonTint="@color/teal_primary" />
+
+                    <RadioButton
+                        android:id="@+id/rbDiffMedium"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Medium"
+                        android:checked="true"
+                        android:textColor="@color/text_primary"
+                        android:buttonTint="@color/teal_primary" />
+
+                    <RadioButton
+                        android:id="@+id/rbDiffDifficult"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Difficult"
+                        android:textColor="@color/text_primary"
+                        android:buttonTint="@color/teal_primary" />
+                </RadioGroup>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Number of Questions:"
+                        android:textColor="@color/text_secondary"
+                        android:textSize="13sp"
+                        android:textStyle="bold" />
+
+                    <EditText
+                        android:id="@+id/etQuestionCount"
+                        android:layout_width="80dp"
+                        android:layout_height="44dp"
+                        android:background="@drawable/bg_rounded_card"
+                        android:hint="5"
+                        android:text="5"
+                        android:gravity="center"
+                        android:textColor="@color/text_primary"
+                        android:textColorHint="@color/text_muted"
+                        android:inputType="number" />
+                </LinearLayout>
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- Loading State -->
+        <LinearLayout
+            android:id="@+id/layoutAiLoading"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:visibility="gone"
+            android:layout_marginTop="20dp">
+
+            <ProgressBar
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:indeterminateTint="@color/teal_primary" />
+
+            <TextView
+                android:id="@+id/tvAiLoadingStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="AI is reading material &amp; generating summary &amp; quiz..."
+                android:textColor="@color/teal_primary"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                android:layout_marginTop="8dp" />
+        </LinearLayout>
+
+        <!-- Submit Button -->
+        <Button
+            android:id="@+id/btnUploadNote"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:text="🚀 Upload &amp; Generate AI Quiz"
+            android:textColor="@color/bg_darker"
+            android:textStyle="bold"
+            android:textSize="15sp"
+            android:backgroundTint="@color/teal_primary"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="32dp" />
+
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

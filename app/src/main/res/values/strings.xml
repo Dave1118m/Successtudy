@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Successtudy</string>
+    <!-- Put your Google Cloud Console OAuth 2.0 Web Client ID here (if validating ID tokens). Leave blank if using default Google Play Sign-In -->
+    <string name="google_web_client_id"></string>
+    <string name="default_web_client_id">@string/google_web_client_id</string>
+    
+    <!-- Default Gemini API Key (can also be entered dynamically in Settings) -->
+    <string name="default_gemini_api_key">YOUR_GEMINI_API_KEY_HERE</string>
+
+    <string-array name="question_counts">
+        <item>3</item>
+        <item>5</item>
+        <item>10</item>
+        <item>20</item>
+    </string-array>
+</resources>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Backgrounds -->
+    <color name="bg_dark">#0A1A2F</color>
+    <color name="bg_darker">#020C1B</color>
+    <color name="bg_card">#112240</color>
+    
+    <!-- Accent & Highlights -->
+    <color name="teal_primary">#00BFA6</color>
+    <color name="teal_glow">#64FFDA</color>
+    <color name="accent_gold">#FFD700</color>
+    
+    <!-- Text Colors -->
+    <color name="text_primary">#E6F1FF</color>
+    <color name="text_secondary">#8892B0</color>
+    <color name="text_muted">#495670</color>
+    
+    <!-- Standard Colors -->
+    <color name="white">#FFFFFFFF</color>
+    <color name="black">#FF000000</color>
+    <color name="red_error">#FF4D4D</color>
+    <color name="green_success">#00E676</color>
+</resources>

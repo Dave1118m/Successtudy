@@ -1,0 +1,452 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_dark">
+
+    <!-- STATE 1: SETUP SCREEN -->
+    <LinearLayout
+        android:id="@+id/layoutQuizSetup"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:visibility="visible">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="AI Quiz Generator"
+            android:textColor="@color/text_primary"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:layout_marginTop="16dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Extract concepts from notes and test your knowledge"
+            android:textColor="@color/text_secondary"
+            android:textSize="12sp"
+            android:layout_marginTop="4dp" />
+
+        <!-- Note Selection -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SELECT STUDY NOTE SOURCE:"
+            android:textColor="@color/text_secondary"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:layout_marginTop="32dp" />
+
+        <Spinner
+            android:id="@+id/spQuizSourceNote"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/bg_rounded_card"
+            android:layout_marginTop="8dp"
+            android:paddingHorizontal="16dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginTop="8dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Questions:"
+                android:textColor="@color/text_primary"
+                android:textSize="14sp"
+                android:layout_marginEnd="8dp" />
+
+            <EditText
+                android:id="@+id/etQuizQuestionCount"
+                android:layout_width="70dp"
+                android:layout_height="40dp"
+                android:background="@drawable/bg_rounded_card"
+                android:gravity="center"
+                android:hint="5"
+                android:text="5"
+                android:textColor="@color/text_primary"
+                android:textColorHint="@color/text_muted"
+                android:inputType="number" />
+
+            <Button
+                android:id="@+id/btnUploadNewNote"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:text="Upload New"
+                android:layout_marginStart="12dp"
+                android:backgroundTint="@color/bg_card"
+                android:textColor="@color/text_primary" />
+        </LinearLayout>
+
+        <!-- Difficulty Settings -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="CHALLENGE DIFFICULTY LEVEL:"
+            android:textColor="@color/text_secondary"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:layout_marginTop="24dp" />
+
+        <RadioGroup
+            android:id="@+id/rgQuizDifficulty"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="8dp">
+
+            <RadioButton
+                android:id="@+id/rbDiffSimple"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Simple (3 Questions, MCQ &amp; T/F)"
+                android:textColor="@color/text_primary"
+                android:buttonTint="@color/teal_primary"
+                android:checked="true"
+                android:paddingVertical="8dp" />
+
+            <RadioButton
+                android:id="@+id/rbDiffMedium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Medium (5 Questions, Mixed types)"
+                android:textColor="@color/text_primary"
+                android:buttonTint="@color/teal_primary"
+                android:paddingVertical="8dp" />
+
+            <RadioButton
+                android:id="@+id/rbDiffDifficult"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Difficult (8 Questions + Advanced logic)"
+                android:textColor="@color/text_primary"
+                android:buttonTint="@color/teal_primary"
+                android:paddingVertical="8dp" />
+        </RadioGroup>
+
+        <!-- Start Actions -->
+        <Button
+            android:id="@+id/btnStartQuiz"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:text="Start AI Practice Quiz"
+            android:textColor="@color/bg_darker"
+            android:textStyle="bold"
+            android:backgroundTint="@color/teal_primary"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:layout_marginTop="32dp" />
+
+        <Button
+            android:id="@+id/btnStartExamSim"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:text="Launch Timed Exam Simulator"
+            android:textColor="@color/text_primary"
+            android:textStyle="bold"
+            android:backgroundTint="@color/bg_card"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:layout_marginTop="16dp" />
+    </LinearLayout>
+
+    <!-- STATE 2: ACTIVE QUIZ VIEW -->
+    <LinearLayout
+        android:id="@+id/layoutQuizActive"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:visibility="gone">
+
+        <!-- Top stats & Timer -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp">
+
+            <TextView
+                android:id="@+id/tvQuizProgressIndicator"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Question 1 of 5"
+                android:textColor="@color/text_secondary"
+                android:textSize="13sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvQuizTimer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:text="05:00"
+                android:textColor="@color/teal_primary"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:drawableStart="@android:drawable/ic_menu_recent_history"
+                android:drawablePadding="6dp" />
+        </RelativeLayout>
+
+        <!-- Timer progress bar -->
+        <ProgressBar
+            android:id="@+id/pbQuizTimer"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="6dp"
+            android:layout_marginTop="8dp"
+            android:progress="100"
+            android:progressTint="@color/teal_primary"
+            android:progressBackgroundTint="@color/bg_card" />
+
+        <!-- Question Card -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_marginTop="20dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="0dp"
+            app:cardBackgroundColor="@color/bg_card">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:padding="20dp">
+
+                <TextView
+                    android:id="@+id/tvQuestionTypeBadge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_rounded_card"
+                    android:backgroundTint="@color/bg_dark"
+                    android:paddingHorizontal="10dp"
+                    android:paddingVertical="4dp"
+                    android:text="MULTIPLE CHOICE"
+                    android:textColor="@color/teal_primary"
+                    android:textSize="10sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvQuestionText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="What is the worst-case time complexity of Quick Sort?"
+                    android:textColor="@color/text_primary"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:layout_marginTop="16dp" />
+
+                <!-- Container for Multiple Choice / True-False options -->
+                <RadioGroup
+                    android:id="@+id/rgQuizOptions"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:visibility="visible">
+
+                    <RadioButton
+                        android:id="@+id/rbOpt1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Option 1"
+                        android:textColor="@color/text_primary"
+                        android:buttonTint="@color/teal_primary"
+                        android:padding="12dp"
+                        android:layout_marginBottom="8dp"
+                        android:background="@drawable/bg_rounded_card" />
+
+                    <RadioButton
+                        android:id="@+id/rbOpt2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Option 2"
+                        android:textColor="@color/text_primary"
+                        android:buttonTint="@color/teal_primary"
+                        android:padding="12dp"
+                        android:layout_marginBottom="8dp"
+                        android:background="@drawable/bg_rounded_card" />
+
+                    <RadioButton
+                        android:id="@+id/rbOpt3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Option 3"
+                        android:textColor="@color/text_primary"
+                        android:buttonTint="@color/teal_primary"
+                        android:padding="12dp"
+                        android:layout_marginBottom="8dp"
+                        android:background="@drawable/bg_rounded_card" />
+
+                    <RadioButton
+                        android:id="@+id/rbOpt4"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Option 4"
+                        android:textColor="@color/text_primary"
+                        android:buttonTint="@color/teal_primary"
+                        android:padding="12dp"
+                        android:background="@drawable/bg_rounded_card" />
+                </RadioGroup>
+
+                <!-- Container for Short Answer input -->
+                <LinearLayout
+                    android:id="@+id/layoutShortAnswer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginTop="24dp"
+                    android:visibility="gone">
+
+                    <EditText
+                        android:id="@+id/etShortAnswerInput"
+                        android:layout_width="match_parent"
+                        android:layout_height="56dp"
+                        android:hint="Type your answer here..."
+                        android:textColorHint="@color/text_muted"
+                        android:textColor="@color/text_primary"
+                        android:background="@drawable/bg_rounded_card"
+                        android:paddingHorizontal="16dp" />
+                </LinearLayout>
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- Footer Actions -->
+        <Button
+            android:id="@+id/btnSubmitAnswer"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:text="Submit Answer"
+            android:textColor="@color/bg_darker"
+            android:textStyle="bold"
+            android:backgroundTint="@color/teal_primary"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp" />
+    </LinearLayout>
+
+    <!-- STATE 3: RESULTS SCREEN -->
+    <LinearLayout
+        android:id="@+id/layoutQuizResults"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:gravity="center_horizontal"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Quiz Results"
+            android:textColor="@color/teal_primary"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:layout_marginTop="40dp" />
+
+        <!-- Score circle -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginTop="32dp"
+            app:cardCornerRadius="75dp"
+            app:cardElevation="0dp"
+            app:cardBackgroundColor="@color/bg_card">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/tvResultScore"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="80%"
+                    android:textColor="@color/teal_primary"
+                    android:textSize="36sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvResultFraction"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="4 of 5 Correct"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="12sp" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- Feedback message -->
+        <TextView
+            android:id="@+id/tvResultFeedback"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Great Job! Keep learning."
+            android:textColor="@color/text_primary"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_marginTop="24dp" />
+
+        <!-- Weak Areas Card -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="0dp"
+            app:cardBackgroundColor="@color/bg_card">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="AI STRENGTH &amp; WEAKNESS ANALYSIS"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="11sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvWeakAreasList"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="• Weak Area: Time complexity bounds.\n• Suggested Study: Re-read Chapter 3 on Big-O Notation and merge splits."
+                    android:textColor="@color/text_primary"
+                    android:textSize="13sp"
+                    android:layout_marginTop="12dp"
+                    android:lineSpacingExtra="4dp" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- Done Button -->
+        <Button
+            android:id="@+id/btnFinishQuiz"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:text="Back to Dashboard"
+            android:textColor="@color/bg_darker"
+            android:textStyle="bold"
+            android:backgroundTint="@color/teal_primary"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:layout_marginTop="32dp" />
+
+    </LinearLayout>
+
+</FrameLayout>

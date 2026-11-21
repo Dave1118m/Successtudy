@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <style name="Theme.Successtudy" parent="Theme.MaterialComponents.NoActionBar">
+        <!-- Primary brand colors -->
+        <item name="colorPrimary">@color/bg_darker</item>
+        <item name="colorPrimaryVariant">@color/bg_dark</item>
+        <item name="colorOnPrimary">@color/white</item>
+        
+        <!-- Secondary brand colors -->
+        <item name="colorSecondary">@color/teal_primary</item>
+        <item name="colorSecondaryVariant">@color/teal_glow</item>
+        <item name="colorOnSecondary">@color/bg_darker</item>
+        
+        <!-- Status bar and window styling -->
+        <item name="android:statusBarColor">@color/bg_darker</item>
+        <item name="android:windowBackground">@color/bg_dark</item>
+        
+        <!-- Component text and attributes -->
+        <item name="android:textColorPrimary">@color/text_primary</item>
+        <item name="android:textColorSecondary">@color/text_secondary</item>
+        
+        <!-- Custom bottom navigation style -->
+        <item name="bottomNavigationStyle">@style/CustomBottomNavigation</item>
+    </style>
+
+    <style name="CustomBottomNavigation" parent="Widget.Design.BottomNavigationView">
+        <item name="backgroundTint">@color/bg_darker</item>
+        <item name="itemIconTint">@color/bottom_nav_colors</item>
+        <item name="itemTextColor">@color/bottom_nav_colors</item>
+        <item name="itemRippleColor">@color/teal_glow</item>
+    </style>
+</resources>

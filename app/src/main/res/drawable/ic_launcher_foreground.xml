@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- Graduation Cap / Book Symbol -->
+    <path
+        android:fillColor="#14FFEC"
+        android:pathData="M30,40 L54,25 L78,40 L54,55 Z" />
+    <path
+        android:fillColor="#00BFA5"
+        android:pathData="M30,40 L30,60 C30,70 54,80 54,80 C54,80 78,70 78,60 L78,40 L54,55 Z" />
+    <!-- Modern 'S' for Successtudy -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M48,45 Q54,40 60,45 T60,55 Q54,60 48,55 T48,45" />
+</vector>

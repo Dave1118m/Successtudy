@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_dark">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Profile card -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="0dp"
+            app:cardBackgroundColor="@color/bg_card">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="16dp"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:id="@+id/ivProfileAvatar"
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
+                    android:src="@android:drawable/sym_def_app_icon"
+                    android:background="@drawable/bg_rounded_card"
+                    android:backgroundTint="@color/bg_dark"
+                    android:padding="8dp" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:layout_marginStart="16dp">
+
+                    <TextView
+                        android:id="@+id/tvProfileName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="John Doe"
+                        android:textColor="@color/text_primary"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tvProfileEmail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="student@stanford.edu"
+                        android:textColor="@color/text_secondary"
+                        android:textSize="12sp"
+                        android:layout_marginTop="2dp" />
+
+                    <TextView
+                        android:id="@+id/tvProfileUniversity"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Stanford University"
+                        android:textColor="@color/text_secondary"
+                        android:textSize="12sp"
+                        android:layout_marginTop="2dp" />
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/btnLogout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Logout"
+                    android:textSize="11sp"
+                    android:textColor="@color/red_error"
+                    android:backgroundTint="@color/bg_dark"
+                    app:strokeColor="@color/red_error"
+                    app:strokeWidth="1dp" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- Financial Wallet & Earnings Widget -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="0dp"
+            app:cardBackgroundColor="@color/bg_card">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="16dp"
+                android:weightSum="2">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="WALLET BALANCE"
+                        android:textColor="@color/text_secondary"
+                        android:textSize="10sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tvProfileBalance"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="$50.00"
+                        android:textColor="@color/teal_primary"
+                        android:textSize="24sp"
+                        android:textStyle="bold"
+                        android:layout_marginTop="4dp" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/text_muted"
+                    android:layout_marginHorizontal="8dp" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="SELLER EARNINGS"
+                        android:textColor="@color/text_secondary"
+                        android:textSize="10sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tvProfileEarnings"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="$0.00"
+                        android:textColor="@color/accent_gold"
+                        android:textSize="24sp"
+                        android:textStyle="bold"
+                        android:layout_marginTop="4dp" />
+                </LinearLayout>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- Gamification Badges Section -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="UNLOCKED BADGES &amp; RANKS"
+            android:textColor="@color/text_secondary"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:layout_marginTop="24dp" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvProfileBadges"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp" />
+
+        <!-- Analytics Charts Widget -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="WEEKLY STUDY PROGRESS CHART"
+            android:textColor="@color/text_secondary"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:layout_marginTop="24dp" />
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="0dp"
+            app:cardBackgroundColor="@color/bg_card">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:id="@+id/tvAnalyticsSub"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Quizzes Completed vs Average Score"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="11sp" />
+
+                <!-- Mock Visual Chart (7 columns matching Mon-Sun) -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="120dp"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="16dp"
+                    android:gravity="bottom"
+                    android:weightSum="7">
+
+                    <LinearLayout android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:orientation="vertical" android:gravity="bottom|center_horizontal">
+                        <View android:layout_width="16dp" android:layout_height="30dp" android:background="@color/text_muted" android:layout_marginBottom="4dp" />
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="M" android:textColor="@color/text_secondary" android:textSize="10sp"/>
+                    </LinearLayout>
+
+                    <LinearLayout android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:orientation="vertical" android:gravity="bottom|center_horizontal">
+                        <View android:layout_width="16dp" android:layout_height="60dp" android:background="@color/text_muted" android:layout_marginBottom="4dp" />
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="T" android:textColor="@color/text_secondary" android:textSize="10sp"/>
+                    </LinearLayout>
+
+                    <LinearLayout android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:orientation="vertical" android:gravity="bottom|center_horizontal">
+                        <View android:layout_width="16dp" android:layout_height="20dp" android:background="@color/text_muted" android:layout_marginBottom="4dp" />
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="W" android:textColor="@color/text_secondary" android:textSize="10sp"/>
+                    </LinearLayout>
+
+                    <LinearLayout android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:orientation="vertical" android:gravity="bottom|center_horizontal">
+                        <View android:layout_width="16dp" android:layout_height="80dp" android:background="@color/teal_primary" android:layout_marginBottom="4dp" />
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="T" android:textColor="@color/text_primary" android:textSize="10sp" android:textStyle="bold"/>
+                    </LinearLayout>
+
+                    <LinearLayout android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:orientation="vertical" android:gravity="bottom|center_horizontal">
+                        <View android:layout_width="16dp" android:layout_height="40dp" android:background="@color/text_muted" android:layout_marginBottom="4dp" />
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="F" android:textColor="@color/text_secondary" android:textSize="10sp"/>
+                    </LinearLayout>
+
+                    <LinearLayout android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:orientation="vertical" android:gravity="bottom|center_horizontal">
+                        <View android:layout_width="16dp" android:layout_height="10dp" android:background="@color/text_muted" android:layout_marginBottom="4dp" />
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="S" android:textColor="@color/text_secondary" android:textSize="10sp"/>
+                    </LinearLayout>
+
+                    <LinearLayout android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:orientation="vertical" android:gravity="bottom|center_horizontal">
+                        <View android:layout_width="16dp" android:layout_height="100dp" android:background="@color/teal_primary" android:layout_marginBottom="4dp" />
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="S" android:textColor="@color/text_primary" android:textSize="10sp" android:textStyle="bold"/>
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- User's Uploaded Notes -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="YOUR UPLOADED NOTES"
+            android:textColor="@color/text_secondary"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:layout_marginTop="24dp" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvProfileUploadedNotes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:nestedScrollingEnabled="false"
+            android:layout_marginBottom="24dp" />
+
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>
