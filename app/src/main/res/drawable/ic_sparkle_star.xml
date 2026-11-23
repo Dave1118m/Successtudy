@@ -3,16 +3,20 @@
     android:height="48dp"
     android:viewportWidth="48"
     android:viewportHeight="48">
-  <!-- 4-pointed sparkle with smooth curves -->
+  <!-- 4-pointed sparkle in watery cyan / teal -->
   <path
       android:fillColor="#00BFA6"
       android:pathData="M24,4C24,15.05 32.95,24 44,24C32.95,24 24,32.95 24,44C24,32.95 15.05,24 4,24C15.05,24 24,15.05 24,4Z"/>
-  <!-- Top/Right Highlight in Gold/Cyan -->
+  <!-- Top/Right Water Highlight in Bright Aqua Wave -->
   <path
-      android:fillColor="#FFD700"
+      android:fillColor="#4DD0E1"
       android:pathData="M24,4C24,15.05 32.95,24 44,24L24,24Z"/>
-  <!-- Bottom/Left Highlight in Blue -->
+  <!-- Bottom/Left Water Depth in Oceanic Marine -->
   <path
-      android:fillColor="#7C4DFF"
+      android:fillColor="#00838F"
       android:pathData="M24,44C24,32.95 15.05,24 4,24L24,24Z"/>
+  <!-- Core water droplet shine in Soft Aqua -->
+  <path
+      android:fillColor="#E0F7FA"
+      android:pathData="M24,16C24,20.4 27.6,24 32,24C27.6,24 24,27.6 24,32C24,27.6 20.4,24 16,24C20.4,24 24,20.4 24,16Z"/>
 </vector>

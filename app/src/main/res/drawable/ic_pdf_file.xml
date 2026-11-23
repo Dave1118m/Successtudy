@@ -3,15 +3,15 @@
     android:height="48dp"
     android:viewportWidth="48"
     android:viewportHeight="48">
-  <!-- Document Base -->
+  <!-- Document Base in Soft Water Cyan / Aqua -->
   <path
-      android:fillColor="#FF3B30"
+      android:fillColor="#00ACC1"
       android:pathData="M12,4C9.79,4 8,5.79 8,8L8,40C8,42.21 9.79,44 12,44L36,44C38.21,44 40,42.21 40,40L40,16L28,4L12,4Z"/>
-  <!-- Folded Corner -->
+  <!-- Folded Corner in Light Translucent Aqua Water -->
   <path
-      android:fillColor="#FF857D"
+      android:fillColor="#80DEEA"
       android:pathData="M28,4L40,16L28,16L28,4Z"/>
-  <!-- PDF Lettering or Icon -->
+  <!-- Document Lines / Symbol in Crisp Pure White -->
   <path
       android:fillColor="#FFFFFF"
       android:pathData="M16,24C16,22.9 16.9,22 18,22L22,22C23.66,22 25,23.34 25,25C25,26.66 23.66,28 22,28L18.5,28L18.5,32L16,32L16,24ZM18.5,25.5L21.5,25.5C21.78,25.5 22,25.28 22,25C22,24.72 21.78,24.5 21.5,24.5L18.5,24.5L18.5,25.5ZM27,22L30,22C32.21,22 34,23.79 34,26L34,28C34,30.21 32.21,32 30,32L27,32L27,22ZM29.5,24.5L29.5,29.5L30,29.5C30.83,29.5 31.5,28.83 31.5,28L31.5,26C31.5,25.17 30.83,24.5 30,24.5L29.5,24.5Z"/>

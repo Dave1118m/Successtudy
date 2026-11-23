@@ -3,6 +3,7 @@ package com.example.successtudy.ui;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -25,13 +26,7 @@ public class WelcomeActivity extends AppCompatActivity {
         sessionManager = new SessionManager(this);
         appDao = AppDatabase.getDatabase(this).appDao();
 
-        // If user is already logged in, navigate straight to main app
-        if (sessionManager.isLoggedIn()) {
-            startActivity(new Intent(WelcomeActivity.this, MainActivity.class));
-            finish();
-            return;
-        }
-
+        // Always display the Landing Page when opening the app (do not auto-redirect)
         setContentView(R.layout.activity_welcome);
 
         // Header settings
@@ -42,47 +37,80 @@ public class WelcomeActivity extends AppCompatActivity {
             });
         }
 
-        // Action Buttons
+        TextView tvGetStartedText = findViewById(R.id.tvGetStartedText);
         View btnGetStartedPill = findViewById(R.id.btnGetStartedPill);
+        View btnLoginPill = findViewById(R.id.btnLoginPill);
+        View llExploreGuest = findViewById(R.id.llExploreGuest);
+
+        boolean isLoggedIn = sessionManager.isLoggedIn();
+
+        if (isLoggedIn && tvGetStartedText != null) {
+            String userName = sessionManager.getCurrentUserName();
+            if (userName != null && !userName.trim().isEmpty()) {
+                tvGetStartedText.setText("Continue as " + userName);
+            } else {
+                tvGetStartedText.setText("Continue to Study Hub");
+            }
+        }
+
+        // Action Buttons
         if (btnGetStartedPill != null) {
             btnGetStartedPill.setOnClickListener(v -> {
-                startActivity(new Intent(WelcomeActivity.this, RegisterActivity.class));
+                if (sessionManager.isLoggedIn()) {
+                    startActivity(new Intent(WelcomeActivity.this, MainActivity.class));
+                } else {
+                    startActivity(new Intent(WelcomeActivity.this, RegisterActivity.class));
+                }
             });
         }
 
-        View btnLoginPill = findViewById(R.id.btnLoginPill);
         if (btnLoginPill != null) {
             btnLoginPill.setOnClickListener(v -> {
                 startActivity(new Intent(WelcomeActivity.this, LoginActivity.class));
             });
         }
 
-        View llExploreGuest = findViewById(R.id.llExploreGuest);
         if (llExploreGuest != null) {
             llExploreGuest.setOnClickListener(v -> {
-                handleGuestLogin(null);
+                if (sessionManager.isLoggedIn()) {
+                    startActivity(new Intent(WelcomeActivity.this, MainActivity.class));
+                } else {
+                    handleGuestLogin(null);
+                }
             });
         }
 
         // Interactive 2x2 Feature Cards
         View cardUploadFiles = findViewById(R.id.cardUploadFiles);
         if (cardUploadFiles != null) {
-            cardUploadFiles.setOnClickListener(v -> handleGuestLogin("upload"));
+            cardUploadFiles.setOnClickListener(v -> openFeature("upload"));
         }
 
         View cardAiSummaries = findViewById(R.id.cardAiSummaries);
         if (cardAiSummaries != null) {
-            cardAiSummaries.setOnClickListener(v -> handleGuestLogin("home"));
+            cardAiSummaries.setOnClickListener(v -> openFeature("home"));
         }
 
         View cardTailoredQuizzes = findViewById(R.id.cardTailoredQuizzes);
         if (cardTailoredQuizzes != null) {
-            cardTailoredQuizzes.setOnClickListener(v -> handleGuestLogin("quiz"));
+            cardTailoredQuizzes.setOnClickListener(v -> openFeature("quiz"));
         }
 
         View cardStudyHub = findViewById(R.id.cardStudyHub);
         if (cardStudyHub != null) {
-            cardStudyHub.setOnClickListener(v -> handleGuestLogin("home"));
+            cardStudyHub.setOnClickListener(v -> openFeature("home"));
+        }
+    }
+
+    private void openFeature(String targetTab) {
+        if (sessionManager.isLoggedIn()) {
+            Intent intent = new Intent(WelcomeActivity.this, MainActivity.class);
+            if (targetTab != null) {
+                intent.putExtra("EXTRA_TARGET_TAB", targetTab);
+            }
+            startActivity(intent);
+        } else {
+            handleGuestLogin(targetTab);
         }
     }
 
@@ -104,7 +132,6 @@ public class WelcomeActivity extends AppCompatActivity {
                         intent.putExtra("EXTRA_TARGET_TAB", targetTab);
                     }
                     startActivity(intent);
-                    finish();
                 });
             } catch (Exception e) {
                 runOnUiThread(() -> {

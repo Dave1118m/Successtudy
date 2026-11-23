@@ -3,20 +3,20 @@
     android:height="48dp"
     android:viewportWidth="48"
     android:viewportHeight="48">
-  <!-- Bar 1 (Short - Purple) -->
+  <!-- Bar 1 (Soft Water Cyan) -->
   <path
-      android:fillColor="#7C4DFF"
+      android:fillColor="#80DEEA"
       android:pathData="M8,28C8,26.9 8.9,26 10,26L14,26C15.1,26 16,26.9 16,28L16,40L8,40L8,28Z"/>
-  <!-- Bar 2 (Medium - Blue) -->
+  <!-- Bar 2 (Medium Aqua Wave) -->
   <path
-      android:fillColor="#2979FF"
+      android:fillColor="#26C6DA"
       android:pathData="M18,18C18,16.9 18.9,16 20,16L24,16C25.1,16 26,16.9 26,18L26,40L18,40L18,18Z"/>
-  <!-- Bar 3 (Tall - Cyan/Teal) -->
+  <!-- Bar 3 (Deep Water Teal) -->
   <path
       android:fillColor="#00BFA6"
       android:pathData="M28,8C28,6.9 28.9,6 30,6L34,6C35.1,6 36,6.9 36,8L36,40L28,40L28,8Z"/>
-  <!-- Base line -->
+  <!-- Water Ripple Baseline -->
   <path
-      android:fillColor="#90A4AE"
+      android:fillColor="#00838F"
       android:pathData="M6,40L38,40C39.1,40 40,40.9 40,42C40,43.1 39.1,44 38,44L6,44C4.9,44 4,43.1 4,42C4,40.9 4.9,40 6,40Z"/>
 </vector>
