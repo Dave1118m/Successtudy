@@ -42,9 +42,9 @@ public class MainActivity extends AppCompatActivity {
             sessionManager = new SessionManager(this);
             appDao = AppDatabase.getDatabase(this).appDao();
             
-            // Check if user is logged in; if not, redirect to LoginActivity
+            // Check if user is logged in; if not, redirect to WelcomeActivity
             if (!sessionManager.isLoggedIn()) {
-                startActivity(new Intent(MainActivity.this, LoginActivity.class));
+                startActivity(new Intent(MainActivity.this, WelcomeActivity.class));
                 finish();
                 return;
             }
@@ -144,7 +144,7 @@ public class MainActivity extends AppCompatActivity {
                                 com.google.android.gms.auth.api.signin.GoogleSignInOptions.DEFAULT_SIGN_IN).build()
                 ).signOut();
             } catch (Exception ignored) {}
-            startActivity(new Intent(this, LoginActivity.class));
+            startActivity(new Intent(this, WelcomeActivity.class));
             finish();
             return true;
         }
@@ -160,9 +160,6 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        // Logout and return to login screen when back button is pressed
-        sessionManager.logoutUser();
-        startActivity(new Intent(this, LoginActivity.class));
-        finish();
+        super.onBackPressed();
     }
 }

@@ -12,6 +12,19 @@
         android:padding="24dp">
 
         <ImageButton
+            android:id="@+id/btnBackRegister"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:src="@android:drawable/ic_menu_revert"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Back to Home"
+            app:tint="@color/text_secondary"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="8dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <ImageButton
             android:id="@+id/btnSmtpSettingsReg"
             android:layout_width="48dp"
             android:layout_height="48dp"

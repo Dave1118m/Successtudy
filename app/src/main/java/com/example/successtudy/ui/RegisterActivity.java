@@ -61,6 +61,7 @@ public class RegisterActivity extends AppCompatActivity {
         btnRegister = findViewById(R.id.btnRegister);
         tvLoginLink = findViewById(R.id.tvLoginLink);
 
+        findViewById(R.id.btnBackRegister).setOnClickListener(v -> finish());
         findViewById(R.id.btnSmtpSettingsReg).setOnClickListener(v -> {
             startActivity(new Intent(RegisterActivity.this, SettingsActivity.class));
         });

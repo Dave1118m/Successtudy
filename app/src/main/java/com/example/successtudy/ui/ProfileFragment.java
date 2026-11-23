@@ -117,7 +117,7 @@ public class ProfileFragment extends Fragment {
         btnLogout.setOnClickListener(v -> {
             sessionManager.logoutUser();
             Toast.makeText(getContext(), "Logged out", Toast.LENGTH_SHORT).show();
-            startActivity(new Intent(getActivity(), LoginActivity.class));
+            startActivity(new Intent(getActivity(), WelcomeActivity.class));
             requireActivity().finish();
         });
 
