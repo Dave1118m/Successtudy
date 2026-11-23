@@ -50,12 +50,6 @@ public class LoginActivity extends AppCompatActivity {
         sessionManager = new SessionManager(this);
         appDao = AppDatabase.getDatabase(this).appDao();
 
-        if (sessionManager.isLoggedIn()) {
-            startActivity(new Intent(LoginActivity.this, MainActivity.class));
-            finish();
-            return;
-        }
-
         etEmail = findViewById(R.id.etEmail);
         etPassword = findViewById(R.id.etPassword);
         btnLogin = findViewById(R.id.btnLogin);

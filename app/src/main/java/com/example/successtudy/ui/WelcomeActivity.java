@@ -2,31 +2,25 @@ package com.example.successtudy.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.successtudy.R;
-import com.example.successtudy.database.AppDatabase;
-import com.example.successtudy.database.dao.AppDao;
-import com.example.successtudy.database.entity.User;
-import com.example.successtudy.logic.SessionManager;
 
 public class WelcomeActivity extends AppCompatActivity {
 
-    private SessionManager sessionManager;
-    private AppDao appDao;
+    private final Handler typewriterHandler = new Handler(Looper.getMainLooper());
+    private Runnable typewriterRunnable;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        sessionManager = new SessionManager(this);
-        appDao = AppDatabase.getDatabase(this).appDao();
-
-        // Always display the Landing Page when opening the app (do not auto-redirect)
+        // Always display the Landing Page when opening the app
         setContentView(R.layout.activity_welcome);
 
         // Header settings
@@ -37,107 +31,85 @@ public class WelcomeActivity extends AppCompatActivity {
             });
         }
 
-        TextView tvGetStartedText = findViewById(R.id.tvGetStartedText);
-        View btnGetStartedPill = findViewById(R.id.btnGetStartedPill);
-        View btnLoginPill = findViewById(R.id.btnLoginPill);
-        View llExploreGuest = findViewById(R.id.llExploreGuest);
-
-        boolean isLoggedIn = sessionManager.isLoggedIn();
-
-        if (isLoggedIn && tvGetStartedText != null) {
-            String userName = sessionManager.getCurrentUserName();
-            if (userName != null && !userName.trim().isEmpty()) {
-                tvGetStartedText.setText("Continue as " + userName);
-            } else {
-                tvGetStartedText.setText("Continue to Study Hub");
-            }
-        }
-
-        // Action Buttons
-        if (btnGetStartedPill != null) {
-            btnGetStartedPill.setOnClickListener(v -> {
-                if (sessionManager.isLoggedIn()) {
-                    startActivity(new Intent(WelcomeActivity.this, MainActivity.class));
-                } else {
-                    startActivity(new Intent(WelcomeActivity.this, RegisterActivity.class));
-                }
+        // Horizontal Action Buttons: Explore (Register) and Log In
+        View btnExplorePill = findViewById(R.id.btnExplorePill);
+        if (btnExplorePill != null) {
+            btnExplorePill.setOnClickListener(v -> {
+                startActivity(new Intent(WelcomeActivity.this, RegisterActivity.class));
             });
         }
 
+        View btnLoginPill = findViewById(R.id.btnLoginPill);
         if (btnLoginPill != null) {
             btnLoginPill.setOnClickListener(v -> {
                 startActivity(new Intent(WelcomeActivity.this, LoginActivity.class));
             });
         }
 
-        if (llExploreGuest != null) {
-            llExploreGuest.setOnClickListener(v -> {
-                if (sessionManager.isLoggedIn()) {
-                    startActivity(new Intent(WelcomeActivity.this, MainActivity.class));
-                } else {
-                    handleGuestLogin(null);
-                }
-            });
-        }
+        // Interactive 2x2 Feature Cards redirect to Register
+        View.OnClickListener cardClickListener = v -> {
+            startActivity(new Intent(WelcomeActivity.this, RegisterActivity.class));
+        };
 
-        // Interactive 2x2 Feature Cards
         View cardUploadFiles = findViewById(R.id.cardUploadFiles);
         if (cardUploadFiles != null) {
-            cardUploadFiles.setOnClickListener(v -> openFeature("upload"));
+            cardUploadFiles.setOnClickListener(cardClickListener);
         }
 
         View cardAiSummaries = findViewById(R.id.cardAiSummaries);
         if (cardAiSummaries != null) {
-            cardAiSummaries.setOnClickListener(v -> openFeature("home"));
+            cardAiSummaries.setOnClickListener(cardClickListener);
         }
 
         View cardTailoredQuizzes = findViewById(R.id.cardTailoredQuizzes);
         if (cardTailoredQuizzes != null) {
-            cardTailoredQuizzes.setOnClickListener(v -> openFeature("quiz"));
+            cardTailoredQuizzes.setOnClickListener(cardClickListener);
         }
 
         View cardStudyHub = findViewById(R.id.cardStudyHub);
         if (cardStudyHub != null) {
-            cardStudyHub.setOnClickListener(v -> openFeature("home"));
+            cardStudyHub.setOnClickListener(cardClickListener);
+        }
+
+        // Animated typewriter letter transition for "developed by Mihrete"
+        TextView tvDevelopedBy = findViewById(R.id.tvDevelopedBy);
+        if (tvDevelopedBy != null) {
+            startTypewriterAnimation(tvDevelopedBy, "developed by Mihrete");
         }
     }
 
-    private void openFeature(String targetTab) {
-        if (sessionManager.isLoggedIn()) {
-            Intent intent = new Intent(WelcomeActivity.this, MainActivity.class);
-            if (targetTab != null) {
-                intent.putExtra("EXTRA_TARGET_TAB", targetTab);
-            }
-            startActivity(intent);
-        } else {
-            handleGuestLogin(targetTab);
-        }
-    }
+    private void startTypewriterAnimation(TextView textView, String fullText) {
+        typewriterRunnable = new Runnable() {
+            int charIndex = 0;
+            boolean isTyping = true;
 
-    private void handleGuestLogin(String targetTab) {
-        new Thread(() -> {
-            try {
-                User guest = appDao.getUserByEmail("guest@successtudy.app");
-                if (guest == null) {
-                    guest = new User("Guest Learner", "guest@successtudy.app", "", "Student", "Visitor", 0.0, true);
-                    long id = appDao.insertUser(guest);
-                    guest.id = (int) id;
-                }
-                sessionManager.loginUser(guest);
-
-                runOnUiThread(() -> {
-                    Toast.makeText(WelcomeActivity.this, "Welcome to SuccessStudy!", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(WelcomeActivity.this, MainActivity.class);
-                    if (targetTab != null) {
-                        intent.putExtra("EXTRA_TARGET_TAB", targetTab);
+            @Override
+            public void run() {
+                if (isTyping) {
+                    if (charIndex <= fullText.length()) {
+                        textView.setText(fullText.substring(0, charIndex));
+                        charIndex++;
+                        typewriterHandler.postDelayed(this, 110);
+                    } else {
+                        isTyping = false;
+                        typewriterHandler.postDelayed(this, 3000); // Hold for 3s
                     }
-                    startActivity(intent);
-                });
-            } catch (Exception e) {
-                runOnUiThread(() -> {
-                    Toast.makeText(WelcomeActivity.this, "Error starting: " + e.getMessage(), Toast.LENGTH_SHORT).show();
-                });
+                } else {
+                    charIndex = 0;
+                    isTyping = true;
+                    textView.setText("");
+                    typewriterHandler.postDelayed(this, 400);
+                }
             }
-        }).start();
+        };
+        typewriterHandler.post(typewriterRunnable);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (typewriterHandler != null && typewriterRunnable != null) {
+            typewriterHandler.removeCallbacks(typewriterRunnable);
+        }
     }
 }

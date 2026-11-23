@@ -11,70 +11,81 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:paddingHorizontal="20dp"
-        android:paddingTop="16dp"
-        android:paddingBottom="24dp">
+        android:paddingBottom="28dp">
 
-        <!-- Top Header Bar -->
+        <!-- Top Header Area with Logo, App Name, Tagline & Settings -->
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp">
+            android:paddingTop="28dp"
+            android:paddingBottom="18dp"
+            android:layout_marginBottom="12dp">
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center_vertical"
-                android:layout_alignParentStart="true">
+                android:orientation="vertical"
+                android:layout_alignParentStart="true"
+                android:layout_toStartOf="@id/btnSettings">
 
-                <ImageView
-                    android:layout_width="38dp"
-                    android:layout_height="38dp"
-                    android:src="@drawable/ic_logo_hexagon"
-                    android:contentDescription="Logo" />
-
-                <TextView
+                <!-- Logo + App Name -->
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:text="Success"
-                    android:textColor="@color/white"
-                    android:textSize="22sp"
-                    android:textStyle="bold" />
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Study"
-                    android:textColor="@color/teal_glow"
-                    android:textSize="22sp"
-                    android:textStyle="bold" />
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:src="@drawable/ic_logo_hexagon"
+                        android:contentDescription="Logo" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:text="Success"
+                        android:textColor="@color/white"
+                        android:textSize="24sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Study"
+                        android:textColor="@color/teal_glow"
+                        android:textSize="24sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
             </LinearLayout>
 
             <ImageButton
                 android:id="@+id/btnSettings"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="42dp"
+                android:layout_height="42dp"
                 android:layout_alignParentEnd="true"
+                android:layout_alignParentTop="true"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:src="@drawable/ic_settings_gear"
                 android:contentDescription="Settings"
                 app:tint="@color/text_primary" />
         </RelativeLayout>
 
-        <!-- Hero Section with Title and 3D Graphic -->
+        <!-- Hero Section with Title and 3D Graphic with Rotating Orbit Text -->
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="24dp">
+            android:layout_marginBottom="36dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_toStartOf="@id/ivHeroGraphic"
+                android:layout_toStartOf="@id/flHeroGraphicContainer"
                 android:layout_centerVertical="true"
                 android:orientation="vertical"
-                android:paddingEnd="12dp">
+                android:paddingEnd="8dp"
+                android:paddingBottom="10dp">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -89,7 +100,7 @@
                     android:layout_height="wrap_content"
                     android:text="Study Companion"
                     android:textColor="@color/teal_glow"
-                    android:textSize="26sp"
+                    android:textSize="25sp"
                     android:textStyle="bold" />
 
                 <View
@@ -97,53 +108,57 @@
                     android:layout_height="3dp"
                     android:background="@drawable/bg_circle_arrow"
                     android:backgroundTint="@color/teal_primary"
-                    android:layout_marginTop="3dp"
-                    android:layout_marginBottom="8dp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Study Smarter • Learn Better"
-                    android:textColor="@color/text_secondary"
-                    android:textSize="13sp"
-                    android:textStyle="bold" />
+                    android:layout_marginTop="6dp" />
             </LinearLayout>
 
-            <ImageView
-                android:id="@+id/ivHeroGraphic"
-                android:layout_width="120dp"
-                android:layout_height="120dp"
+            <!-- FrameLayout with Rotating Orbit Text and Center Books Graphic -->
+            <FrameLayout
+                android:id="@+id/flHeroGraphicContainer"
+                android:layout_width="145dp"
+                android:layout_height="145dp"
                 android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
-                android:src="@drawable/ic_grad_books"
-                android:contentDescription="Graduation Books" />
+                android:layout_centerVertical="true">
+
+                <com.example.successtudy.ui.view.CircularRotatingTextView
+                    android:id="@+id/rotatingTextOrbit"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+                <ImageView
+                    android:id="@+id/ivHeroGraphic"
+                    android:layout_width="92dp"
+                    android:layout_height="92dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_grad_books"
+                    android:contentDescription="Books" />
+            </FrameLayout>
         </RelativeLayout>
 
-        <!-- 2x2 Feature Grid -->
+        <!-- 2x2 Feature Grid (Neutral Cards - No Bright Pastel Color) -->
         <!-- Row 1: Upload Files & Instant AI Summaries -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:baselineAligned="false"
-            android:layout_marginBottom="12dp">
+            android:layout_marginBottom="16dp">
 
             <!-- Card 1: Upload Files -->
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardUploadFiles"
                 android:layout_width="0dp"
-                android:layout_height="130dp"
+                android:layout_height="140dp"
                 android:layout_weight="1"
                 android:layout_marginEnd="6dp"
                 app:cardCornerRadius="20dp"
-                app:cardElevation="4dp"
+                app:cardElevation="2dp"
                 app:cardBackgroundColor="@android:color/transparent">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@drawable/bg_card_upload"
-                    android:padding="14dp">
+                    android:background="@drawable/bg_card_neutral"
+                    android:padding="16dp">
 
                     <ImageView
                         android:id="@+id/ivCard1Icon"
@@ -158,9 +173,9 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@id/ivCard1Icon"
                         android:layout_centerHorizontal="true"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginTop="12dp"
                         android:text="Upload Files"
-                        android:textColor="@color/card_text_dark"
+                        android:textColor="@color/white"
                         android:textSize="14sp"
                         android:textStyle="bold" />
 
@@ -180,18 +195,18 @@
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardAiSummaries"
                 android:layout_width="0dp"
-                android:layout_height="130dp"
+                android:layout_height="140dp"
                 android:layout_weight="1"
                 android:layout_marginStart="6dp"
                 app:cardCornerRadius="20dp"
-                app:cardElevation="4dp"
+                app:cardElevation="2dp"
                 app:cardBackgroundColor="@android:color/transparent">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@drawable/bg_card_summaries"
-                    android:padding="14dp">
+                    android:background="@drawable/bg_card_neutral"
+                    android:padding="16dp">
 
                     <ImageView
                         android:id="@+id/ivCard2Icon"
@@ -206,10 +221,10 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@id/ivCard2Icon"
                         android:layout_centerHorizontal="true"
-                        android:layout_marginTop="8dp"
+                        android:layout_marginTop="10dp"
                         android:gravity="center"
                         android:text="Instant AI\nSummaries"
-                        android:textColor="@color/card_text_dark"
+                        android:textColor="@color/white"
                         android:textSize="13sp"
                         android:textStyle="bold" />
 
@@ -232,24 +247,24 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:baselineAligned="false"
-            android:layout_marginBottom="24dp">
+            android:layout_marginBottom="36dp">
 
             <!-- Card 3: Tailored Quizzes -->
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardTailoredQuizzes"
                 android:layout_width="0dp"
-                android:layout_height="130dp"
+                android:layout_height="140dp"
                 android:layout_weight="1"
                 android:layout_marginEnd="6dp"
                 app:cardCornerRadius="20dp"
-                app:cardElevation="4dp"
+                app:cardElevation="2dp"
                 app:cardBackgroundColor="@android:color/transparent">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@drawable/bg_card_quizzes"
-                    android:padding="14dp">
+                    android:background="@drawable/bg_card_neutral"
+                    android:padding="16dp">
 
                     <ImageView
                         android:id="@+id/ivCard3Icon"
@@ -264,9 +279,9 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@id/ivCard3Icon"
                         android:layout_centerHorizontal="true"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginTop="12dp"
                         android:text="Tailored Quizzes"
-                        android:textColor="@color/card_text_dark"
+                        android:textColor="@color/white"
                         android:textSize="14sp"
                         android:textStyle="bold" />
 
@@ -286,18 +301,18 @@
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardStudyHub"
                 android:layout_width="0dp"
-                android:layout_height="130dp"
+                android:layout_height="140dp"
                 android:layout_weight="1"
                 android:layout_marginStart="6dp"
                 app:cardCornerRadius="20dp"
-                app:cardElevation="4dp"
+                app:cardElevation="2dp"
                 app:cardBackgroundColor="@android:color/transparent">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@drawable/bg_card_hub"
-                    android:padding="14dp">
+                    android:background="@drawable/bg_card_neutral"
+                    android:padding="16dp">
 
                     <ImageView
                         android:id="@+id/ivCard4Icon"
@@ -312,10 +327,10 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@id/ivCard4Icon"
                         android:layout_centerHorizontal="true"
-                        android:layout_marginTop="8dp"
+                        android:layout_marginTop="10dp"
                         android:gravity="center"
                         android:text="Personal Study\nHub"
-                        android:textColor="@color/card_text_dark"
+                        android:textColor="@color/white"
                         android:textSize="13sp"
                         android:textStyle="bold" />
 
@@ -332,119 +347,103 @@
             </androidx.cardview.widget.CardView>
         </LinearLayout>
 
-        <!-- Button 1: Get Started (Pill with Gradient and Arrow) -->
-        <RelativeLayout
-            android:id="@+id/btnGetStartedPill"
-            android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:background="@drawable/bg_btn_get_started"
-            android:clickable="true"
-            android:focusable="true"
-            android:foreground="?attr/selectableItemBackground"
-            android:paddingHorizontal="20dp"
-            android:layout_marginBottom="14dp">
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center_vertical"
-                android:layout_centerInParent="true">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="🚀"
-                    android:textSize="20sp"
-                    android:layout_marginEnd="8dp" />
-
-                <TextView
-                    android:id="@+id/tvGetStartedText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Get Started"
-                    android:textColor="@color/white"
-                    android:textSize="17sp"
-                    android:textStyle="bold" />
-            </LinearLayout>
-
-            <ImageView
-                android:layout_width="28dp"
-                android:layout_height="28dp"
-                android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
-                android:background="@drawable/bg_circle_arrow"
-                android:src="@drawable/ic_arrow_right"
-                android:padding="5dp"
-                android:contentDescription="Go" />
-        </RelativeLayout>
-
-        <!-- Button 2: Log In (Pill with Outline and Door Icon) -->
-        <RelativeLayout
-            android:id="@+id/btnLoginPill"
-            android:layout_width="match_parent"
-            android:layout_height="54dp"
-            android:background="@drawable/bg_btn_login_pill"
-            android:clickable="true"
-            android:focusable="true"
-            android:foreground="?attr/selectableItemBackground"
-            android:paddingHorizontal="20dp"
-            android:layout_marginBottom="16dp">
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center_vertical"
-                android:layout_centerInParent="true">
-
-                <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:src="@drawable/ic_login_door"
-                    android:layout_marginEnd="8dp"
-                    app:tint="@color/white"
-                    android:contentDescription="Log In Icon" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Log In"
-                    android:textColor="@color/white"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
-            </LinearLayout>
-        </RelativeLayout>
-
-        <!-- Tertiary: Explore as Guest Link -->
+        <!-- Horizontal Side-by-Side Buttons: Explore and Log In -->
         <LinearLayout
-            android:id="@+id/llExploreGuest"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="24dp">
+
+            <!-- Button 1: Explore (Redirects to Register Page) -->
+            <RelativeLayout
+                android:id="@+id/btnExplorePill"
+                android:layout_width="0dp"
+                android:layout_height="56dp"
+                android:layout_weight="1"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/bg_btn_get_started"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackground"
+                android:paddingHorizontal="14dp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_centerInParent="true">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="🚀"
+                        android:textSize="18sp"
+                        android:layout_marginEnd="6dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Explore"
+                        android:textColor="@color/white"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+            </RelativeLayout>
+
+            <!-- Button 2: Log In (Redirects to Login Page) -->
+            <RelativeLayout
+                android:id="@+id/btnLoginPill"
+                android:layout_width="0dp"
+                android:layout_height="56dp"
+                android:layout_weight="1"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/bg_btn_login_pill"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackground"
+                android:paddingHorizontal="14dp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_centerInParent="true">
+
+                    <ImageView
+                        android:layout_width="18dp"
+                        android:layout_height="18dp"
+                        android:src="@drawable/ic_login_door"
+                        android:layout_marginEnd="6dp"
+                        app:tint="@color/white"
+                        android:contentDescription="Log In Icon" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Log In"
+                        android:textColor="@color/white"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+            </RelativeLayout>
+        </LinearLayout>
+
+        <!-- Bottom Animated Developer Credit -->
+        <TextView
+            android:id="@+id/tvDevelopedBy"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:padding="8dp"
-            android:clickable="true"
-            android:focusable="true">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Explore as Guest"
-                android:textColor="@color/teal_glow"
-                android:textSize="15sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
-                android:text="›"
-                android:textColor="@color/teal_glow"
-                android:textSize="18sp"
-                android:textStyle="bold" />
-        </LinearLayout>
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="24dp"
+            android:textColor="@color/teal_glow"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:letterSpacing="0.06"
+            android:text="" />
 
     </LinearLayout>
 </ScrollView>
