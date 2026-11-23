@@ -1,0 +1,22 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="48dp"
+    android:height="48dp"
+    android:viewportWidth="48"
+    android:viewportHeight="48">
+  <!-- Outer red ring -->
+  <path
+      android:fillColor="#FF334B"
+      android:pathData="M24,4C12.95,4 4,12.95 4,24C4,35.05 12.95,44 24,44C35.05,44 44,35.05 44,24C44,12.95 35.05,4 24,4ZM24,38C16.27,38 10,31.73 10,24C10,16.27 16.27,10 24,10C31.73,10 38,16.27 38,24C38,31.73 31.73,38 24,38Z"/>
+  <!-- Middle white ring -->
+  <path
+      android:fillColor="#FFFFFF"
+      android:pathData="M24,10C16.27,10 10,16.27 10,24C10,31.73 16.27,38 24,38C31.73,38 38,31.73 38,24C38,16.27 31.73,10 24,10ZM24,32C19.58,32 16,28.42 16,24C16,19.58 19.58,16 24,16C28.42,16 32,19.58 32,24C32,28.42 28.42,32 24,32Z"/>
+  <!-- Center bullseye red dot -->
+  <path
+      android:fillColor="#FF334B"
+      android:pathData="M24,16C19.58,16 16,19.58 16,24C16,28.42 19.58,32 24,32C28.42,32 32,28.42 32,24C32,19.58 28.42,16 24,16Z"/>
+  <!-- Blue Arrow hitting target -->
+  <path
+      android:fillColor="#1E88E5"
+      android:pathData="M38,6L25,19L27,21L40,8L42,12L44,4L36,6L38,6Z"/>
+</vector>

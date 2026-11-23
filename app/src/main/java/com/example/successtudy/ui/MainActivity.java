@@ -66,8 +66,18 @@ public class MainActivity extends AppCompatActivity {
                 android.util.Log.e("MainActivity", "fab_quick_action not found in layout");
             }
 
-            // Load HomeFragment by default
-            loadFragment(new HomeFragment(), "Home");
+            // Check if an initial target tab was requested
+            String targetTab = getIntent().getStringExtra("EXTRA_TARGET_TAB");
+            if ("upload".equalsIgnoreCase(targetTab)) {
+                bottomNavigation.setSelectedItemId(R.id.nav_upload);
+            } else if ("quiz".equalsIgnoreCase(targetTab)) {
+                bottomNavigation.setSelectedItemId(R.id.nav_quiz);
+            } else if ("profile".equalsIgnoreCase(targetTab)) {
+                bottomNavigation.setSelectedItemId(R.id.nav_profile);
+            } else {
+                // Load HomeFragment by default
+                loadFragment(new HomeFragment(), "Home");
+            }
 
             bottomNavigation.setOnItemSelectedListener(item -> {
                 Fragment selectedFragment = null;

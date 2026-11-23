@@ -9,6 +9,19 @@
     <color name="teal_primary">#00BFA6</color>
     <color name="teal_glow">#64FFDA</color>
     <color name="accent_gold">#FFD700</color>
+    <color name="gold_primary">#FFC107</color>
+    <color name="gold_glow">#FFE082</color>
+    
+    <!-- Pastel Card Gradients -->
+    <color name="card_upload_start">#FFF0F2</color>
+    <color name="card_upload_end">#FFE2E6</color>
+    <color name="card_ai_start">#E6F4FE</color>
+    <color name="card_ai_end">#CBE7FE</color>
+    <color name="card_quiz_start">#E6FBF0</color>
+    <color name="card_quiz_end">#C8F5DC</color>
+    <color name="card_hub_start">#F5EEFE</color>
+    <color name="card_hub_end">#E5D4FB</color>
+    <color name="card_text_dark">#1E293B</color>
     
     <!-- Text Colors -->
     <color name="text_primary">#E6F1FF</color>

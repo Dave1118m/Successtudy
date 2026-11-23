@@ -1,0 +1,68 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="120dp"
+    android:height="120dp"
+    android:viewportWidth="120"
+    android:viewportHeight="120">
+  <!-- Sparks / Rays -->
+  <path
+      android:fillColor="#FFD700"
+      android:pathData="M95,15L98,8L101,15L108,18L101,21L98,28L95,21L88,18Z"/>
+  <path
+      android:fillColor="#FFD700"
+      android:pathData="M110,28L112,23L114,28L119,30L114,32L112,37L110,32L105,30Z"/>
+      
+  <!-- Bottom Book (Gold/Yellow) -->
+  <path
+      android:fillColor="#FFB300"
+      android:pathData="M15,92L75,76L115,86L55,102Z"/>
+  <path
+      android:fillColor="#FFF8E1"
+      android:pathData="M15,92L55,102L55,110L15,100Z"/>
+  <path
+      android:fillColor="#FFA000"
+      android:pathData="M55,102L115,86L115,94L55,110Z"/>
+      
+  <!-- Middle Book (Cyan/Blue) -->
+  <path
+      android:fillColor="#0288D1"
+      android:pathData="M20,78L78,64L112,72L54,86Z"/>
+  <path
+      android:fillColor="#E1F5FE"
+      android:pathData="M20,78L54,86L54,93L20,85Z"/>
+  <path
+      android:fillColor="#0277BD"
+      android:pathData="M54,86L112,72L112,79L54,93Z"/>
+
+  <!-- Top Book (Navy/Deep Blue) -->
+  <path
+      android:fillColor="#1565C0"
+      android:pathData="M25,66L80,54L108,60L53,72Z"/>
+  <path
+      android:fillColor="#FFFFFF"
+      android:pathData="M25,66L53,72L53,78L25,72Z"/>
+  <path
+      android:fillColor="#0D47A1"
+      android:pathData="M53,72L108,60L108,66L53,78Z"/>
+
+  <!-- Graduation Cap (Skull cap base) -->
+  <path
+      android:fillColor="#1A237E"
+      android:pathData="M50,42C50,42 50,56 68,56C86,56 86,42 86,42Z"/>
+      
+  <!-- Graduation Cap (Diamond Top) -->
+  <path
+      android:fillColor="#283593"
+      android:pathData="M68,20L106,34L68,48L30,34Z"/>
+      
+  <!-- Cap Button & Gold Tassel -->
+  <path
+      android:fillColor="#FFD700"
+      android:pathData="M66,32A2,2 0 1,0 70,32A2,2 0 1,0 66,32Z"/>
+  <path
+      android:fillColor="#FFC107"
+      android:pathData="M68,34L100,42L102,62L96,62L98,44Z"/>
+  <!-- Tassel Brush -->
+  <path
+      android:fillColor="#FFD700"
+      android:pathData="M95,60L103,60L104,74L94,74Z"/>
+</vector>

@@ -2,7 +2,7 @@ package com.example.successtudy.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Button;
+import android.view.View;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -25,7 +25,7 @@ public class WelcomeActivity extends AppCompatActivity {
         sessionManager = new SessionManager(this);
         appDao = AppDatabase.getDatabase(this).appDao();
 
-        // If user is already logged in, skip the welcome screen and go directly to main app
+        // If user is already logged in, navigate straight to main app
         if (sessionManager.isLoggedIn()) {
             startActivity(new Intent(WelcomeActivity.this, MainActivity.class));
             finish();
@@ -34,24 +34,59 @@ public class WelcomeActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_welcome);
 
-        Button btnGetStarted = findViewById(R.id.btnGetStarted);
-        Button btnLogin = findViewById(R.id.btnLogin);
-        Button btnExploreGuest = findViewById(R.id.btnExploreGuest);
+        // Header settings
+        View btnSettings = findViewById(R.id.btnSettings);
+        if (btnSettings != null) {
+            btnSettings.setOnClickListener(v -> {
+                startActivity(new Intent(WelcomeActivity.this, SettingsActivity.class));
+            });
+        }
 
-        btnGetStarted.setOnClickListener(v -> {
-            startActivity(new Intent(WelcomeActivity.this, RegisterActivity.class));
-        });
+        // Action Buttons
+        View btnGetStartedPill = findViewById(R.id.btnGetStartedPill);
+        if (btnGetStartedPill != null) {
+            btnGetStartedPill.setOnClickListener(v -> {
+                startActivity(new Intent(WelcomeActivity.this, RegisterActivity.class));
+            });
+        }
 
-        btnLogin.setOnClickListener(v -> {
-            startActivity(new Intent(WelcomeActivity.this, LoginActivity.class));
-        });
+        View btnLoginPill = findViewById(R.id.btnLoginPill);
+        if (btnLoginPill != null) {
+            btnLoginPill.setOnClickListener(v -> {
+                startActivity(new Intent(WelcomeActivity.this, LoginActivity.class));
+            });
+        }
 
-        btnExploreGuest.setOnClickListener(v -> {
-            handleGuestLogin();
-        });
+        View llExploreGuest = findViewById(R.id.llExploreGuest);
+        if (llExploreGuest != null) {
+            llExploreGuest.setOnClickListener(v -> {
+                handleGuestLogin(null);
+            });
+        }
+
+        // Interactive 2x2 Feature Cards
+        View cardUploadFiles = findViewById(R.id.cardUploadFiles);
+        if (cardUploadFiles != null) {
+            cardUploadFiles.setOnClickListener(v -> handleGuestLogin("upload"));
+        }
+
+        View cardAiSummaries = findViewById(R.id.cardAiSummaries);
+        if (cardAiSummaries != null) {
+            cardAiSummaries.setOnClickListener(v -> handleGuestLogin("home"));
+        }
+
+        View cardTailoredQuizzes = findViewById(R.id.cardTailoredQuizzes);
+        if (cardTailoredQuizzes != null) {
+            cardTailoredQuizzes.setOnClickListener(v -> handleGuestLogin("quiz"));
+        }
+
+        View cardStudyHub = findViewById(R.id.cardStudyHub);
+        if (cardStudyHub != null) {
+            cardStudyHub.setOnClickListener(v -> handleGuestLogin("home"));
+        }
     }
 
-    private void handleGuestLogin() {
+    private void handleGuestLogin(String targetTab) {
         new Thread(() -> {
             try {
                 User guest = appDao.getUserByEmail("guest@successtudy.app");
@@ -63,13 +98,17 @@ public class WelcomeActivity extends AppCompatActivity {
                 sessionManager.loginUser(guest);
 
                 runOnUiThread(() -> {
-                    Toast.makeText(WelcomeActivity.this, "Welcome, Guest Learner!", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(WelcomeActivity.this, MainActivity.class));
+                    Toast.makeText(WelcomeActivity.this, "Welcome to SuccessStudy!", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(WelcomeActivity.this, MainActivity.class);
+                    if (targetTab != null) {
+                        intent.putExtra("EXTRA_TARGET_TAB", targetTab);
+                    }
+                    startActivity(intent);
                     finish();
                 });
             } catch (Exception e) {
                 runOnUiThread(() -> {
-                    Toast.makeText(WelcomeActivity.this, "Error entering guest mode: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(WelcomeActivity.this, "Error starting: " + e.getMessage(), Toast.LENGTH_SHORT).show();
                 });
             }
         }).start();

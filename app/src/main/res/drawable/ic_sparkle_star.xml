@@ -1,0 +1,18 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="48dp"
+    android:height="48dp"
+    android:viewportWidth="48"
+    android:viewportHeight="48">
+  <!-- 4-pointed sparkle with smooth curves -->
+  <path
+      android:fillColor="#00BFA6"
+      android:pathData="M24,4C24,15.05 32.95,24 44,24C32.95,24 24,32.95 24,44C24,32.95 15.05,24 4,24C15.05,24 24,15.05 24,4Z"/>
+  <!-- Top/Right Highlight in Gold/Cyan -->
+  <path
+      android:fillColor="#FFD700"
+      android:pathData="M24,4C24,15.05 32.95,24 44,24L24,24Z"/>
+  <!-- Bottom/Left Highlight in Blue -->
+  <path
+      android:fillColor="#7C4DFF"
+      android:pathData="M24,44C24,32.95 15.05,24 4,24L24,24Z"/>
+</vector>

@@ -1,0 +1,14 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="36dp"
+    android:height="36dp"
+    android:viewportWidth="36"
+    android:viewportHeight="36">
+  <!-- Rounded Hexagon / Diamond background in Teal -->
+  <path
+      android:fillColor="#00BFA6"
+      android:pathData="M18,2L32,10L32,26L18,34L4,26L4,10L18,2Z"/>
+  <!-- Mortarboard cap inside in white -->
+  <path
+      android:fillColor="#FFFFFF"
+      android:pathData="M18,9L7,15L18,21L27,16.09L27,22L29,22L29,15L18,9ZM11.44,18.42L11.44,22.25C13.25,23.35 15.54,24 18,24C20.46,24 22.75,23.35 24.56,22.25L24.56,18.42C22.84,19.41 20.52,20 18,20C15.48,20 13.16,19.41 11.44,18.42Z"/>
+</vector>
